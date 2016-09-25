@@ -54,6 +54,7 @@ volatile unsigned long lastTimeTriggered = 0; //storage location for last time t
 volatile byte reg_position;
 const byte reg_size = 4;
 
+//Use the union structure to acces the bytes of the float value
 union byte_float_union{
   char bVal[4];
   float fVal;
@@ -105,7 +106,7 @@ ISR(PCINT0_vect)
       lastTimeTriggered = curTimeTriggered;
     }
   }
-    sei(); //re-
+    sei(); //re-enable interrupts
 }
 
 void setup()
@@ -130,7 +131,7 @@ void setup()
     
     // Whatever other setup routines ?
     
-    wheelSpeed.fVal = 0.0; //test value
+    wheelSpeed.fVal = 0.0; //init value
     sei(); //enable global interrupts
 }
 
